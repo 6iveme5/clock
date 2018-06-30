@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        #container{
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+            background-color: chartreuse;
+        }
+        #main{
+            background-color: red;
+            height: 100px;
+            width: 100px;
+
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="main">
+
+        </div>
+    </div>
+    <script>
+        let main = document.querySelector("#main");
+        let top1 = main.offsetTop;
+        console.log(top1);
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #notice{
+            width: 500px;
+            height: 30px;
+            border: 1px solid red;
+            margin: 300px auto;
+            background-color: #cccccc;
+            overflow: hidden;
+        }
+
+        .container{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 800px;
+            height: 300px;
+            background: #ccc;
+            position: relative;
+            top: 0px;
+            font-size: 21px;
+            transition: all .5s;
+        }
+    </style>
+</head>
+<body>
+<div id="notice">
+    <ul class="container">
+        <li>12345</li>
+        <li>12222</li>
+        <li>13333</li>
+        <li>14444</li>
+        <li>15555</li>
+        <li>12345</li>
+    </ul>
+</div>
+<script>
+    const container=document.querySelector(".container");
+    let t=setInterval(notice,2000);
+    let n=0;
+    function notice(){
+        if(n===0){
+            container.style.transition="";
+        }
+        n++;
+        container.style.top=-n*30+"px";
+    }
+    container.addEventListener("transitionend",function(){
+        if(n===5){
+            container.style.transition="none";
+            container.style.top="0";
+            n=0;
+        }
+    })
+    container.onmouseenter=function(){
+        clearInterval(t);
+    }
+    container.onmouseleave=function () {
+        t=setInterval(notice,2000);
+    }
+    window.onfocus=function () {
+        t=setInterval(notice,2000);
+    }
+    window.onblur=function () {
+        clearInterval(t)
+    }
+</script>
+
+</body>
+<ml>

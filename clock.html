@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #clock{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #000;
+            position: relative;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="clock"></div>
+<script>
+
+
+    const clock=document.querySelector("#clock");
+    for(let i=0;i<60;i++){
+        let newDiv=document.createElement("div");
+        if(i%5 ==0) {
+            newDiv.style.cssText = `width:4px;height:10px;background:#000;position:absolute;left:98px;top:4px;transform-origin:2px 96px;` +
+                `transform:rotate(${i * 6}deg);`;
+        }else{
+            newDiv.style.cssText = `width:4px;height:3px;background:#000;position:absolute;left:98px;top:4px;transform-origin:2px 96px;` +
+                `transform:rotate(${i * 6}deg);`;
+        }
+        clock.appendChild(newDiv);
+    }
+
+    let hourPointer = document.createElement("div");
+    hourPointer.style.cssText=`width:50px;height:4px;background:#333;position:absolute;left:90px;top:99px;transform-origin:10px center`;
+    clock.appendChild(hourPointer);
+
+    let minutesPointer = document.createElement("div");
+    minutesPointer.style.cssText=`width:70px;height:3px;background:#333;position:absolute;left:90px;top:100px;transform-origin:10px center`;
+    clock.appendChild(minutesPointer);
+
+    let secondPointer = document.createElement("div");
+    secondPointer.style.cssText=`width:85px;height:2px;background:#333;position:absolute;left:90px;top:100px;transform-origin:10px center`;
+    clock.appendChild(secondPointer);
+    
+    function setPointer() {
+        let date = new Date();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        hourPointer.style.transform = `rotate(${hours*30-90 +minutes*0.5}deg)`;
+        minutesPointer.style.transform = `rotate(${minutes*6-90}deg)`;
+        secondPointer.style.transform = `rotate(${seconds*6-90}deg)`;
+
+    }
+    setPointer();
+    setInterval(setPointer,1000);
+
+</script>
+</body>
+</html>
